@@ -1,0 +1,2 @@
+2 layers of CNN and 20 epochs:
+	loss: 0.2717 - accuracy: 0.9267 - val_loss: 0.1099 - val_accuracy: 0.9867
