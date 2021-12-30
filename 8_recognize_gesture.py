@@ -126,7 +126,7 @@ def split_sentence(text, num_of_words):
 	'''
 	Splits a text into group of num_of_words
 	'''
-	list_words = text.split(" ")
+	list_words = text.split()
 	length = len(list_words)
 	splitted_sentence = []
 	b_index = 0
