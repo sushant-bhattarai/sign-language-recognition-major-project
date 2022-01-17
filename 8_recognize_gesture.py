@@ -184,7 +184,7 @@ def recognize():
 			contours = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[0]
 		if len(contours) > 0:
 			contour = max(contours, key = cv2.contourArea)
-			#print(cv2.contourArea(contour))
+			# print(cv2.contourArea(contour))
 			if cv2.contourArea(contour) > 10000:
 				x1, y1, w1, h1 = cv2.boundingRect(contour)
 				save_img = thresh[y1:y1+h1, x1:x1+w1]
