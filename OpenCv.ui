@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>794</width>
+    <height>585</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="start_button_1">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>370</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>1. Start Webcam</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="camera_display">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>50</y>
+     <width>421</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="threshhold_display">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>50</y>
+     <width>271</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="adjust_button_1">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>410</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>2. Adjust Threshold</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="save_button_1">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>450</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>3. Save Histogram</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="color2_value">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>340</y>
+     <width>361</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Setup the Histogram.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="toggle_display">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>350</y>
+     <width>271</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="camera_here_text">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>20</y>
+     <width>361</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Camera Here:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Threshold_here_text">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>20</y>
+     <width>361</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Threshold Here:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="toggle_text">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>330</y>
+     <width>361</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Final Histogram Here:</string>
+   </property>
+  </widget>
+  <zorder>start_button_1</zorder>
+  <zorder>adjust_button_1</zorder>
+  <zorder>threshhold_display</zorder>
+  <zorder>camera_display</zorder>
+  <zorder>save_button_1</zorder>
+  <zorder>color2_value</zorder>
+  <zorder>toggle_display</zorder>
+  <zorder>camera_here_text</zorder>
+  <zorder>Threshold_here_text</zorder>
+  <zorder>toggle_text</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

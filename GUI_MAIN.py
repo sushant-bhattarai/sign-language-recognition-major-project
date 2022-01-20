@@ -3,7 +3,7 @@ from PyQt5.QtGui import QImage, QPixmap, QFont
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication, QDialog
 from PyQt5.uic import loadUi
-from rec_web import *
+# from rec_web import *
 import cv2
 import numpy as np
 import pickle

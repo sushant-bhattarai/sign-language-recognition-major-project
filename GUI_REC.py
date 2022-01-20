@@ -3,12 +3,12 @@ from PyQt5.QtGui import QImage, QPixmap, QFont
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication, QDialog
 from PyQt5.uic import loadUi
-from rec_web import *
+# from rec_web import *
 import numpy as np
 import cv2, pickle
 import numpy as np
-import tensorflow as tf
-from cnn_tf import cnn_model_fn
+# import tensorflow as tf
+# from cnn_tf import cnn_model_fn
 import os
 import sqlite3
 from keras.models import load_model
@@ -47,6 +47,8 @@ def get_hand_hist():
     return hist
 
 
+
+
 x, y, w, h = 300, 100, 300, 300
 model = load_model('cnn_model_keras2.h5')
 image_x, image_y = get_image_size()
@@ -67,6 +69,7 @@ class MainWindow(QDialog):
         self.text.setFont(self.font)
         self.stop_button.setEnabled(False)
         self.start_button.clicked.connect(self.start_webcam)
+        self.stop_button.clicked.connect(self.stop_webcam)
 
     def start_webcam(self):
         # Capture video from external camera
@@ -77,6 +80,8 @@ class MainWindow(QDialog):
         x, y, w, h = 300, 100, 300, 300
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
+
+        self.stop_button.setEnabled(True)
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_frame)
@@ -116,7 +121,7 @@ class MainWindow(QDialog):
 
                 pred_probab, pred_class = keras_predict(model, save_img)
 
-                if pred_probab * 100 > 90:
+                if pred_probab * 100 > 80:
                     text = get_pred_text_from_db(pred_class)
                     self.text.setText(text)
 
@@ -152,10 +157,14 @@ class MainWindow(QDialog):
         self.threshhold_display.setPixmap(QPixmap.fromImage(outImage))
         self.threshhold_display.setScaledContents(True)
 
+    def stop_webcam(self):
+        self.capture.release()
+        self.timer.stop()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = MainWindow()
-    window.setWindowTitle('ASL recognizer - Real Time Recognization')
+    window.setWindowTitle('ASL recognizer - Real Time Recognition')
     window.show()
     sys.exit(app.exec_())
