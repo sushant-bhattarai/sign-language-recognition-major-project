@@ -79,7 +79,7 @@ def cnn_model_fn(features, labels, mode):
 
 
 
-engine = pyttsx3.init()
+engine = pyttsx3.init("dummy")
 engine.setProperty('rate', 150)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 model = load_model('cnn_model_keras2.h5')
