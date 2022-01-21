@@ -9,6 +9,9 @@ from keras.models import load_model
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
+def get_num_of_classes():
+    return len(os.listdir('gestures/'))
+
 def cnn_model_fn(features, labels, mode):
 	input_layer = tf.reshape(features["x"], [-1, image_x, image_y, 1], name="input")
 

@@ -104,6 +104,7 @@ class MainWindow(QDialog):
         thresh = cv2.merge((thresh, thresh, thresh))
         thresh = cv2.cvtColor(thresh, cv2.COLOR_BGR2GRAY)
         self.thresh = thresh[y:y + h, x:x + w]
+        
         contours = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[0]
         if len(contours) > 0:
             contour = max(contours, key=cv2.contourArea)
@@ -139,7 +140,6 @@ class MainWindow(QDialog):
         outImage = QImage(img, img.shape[1], img.shape[0], img.strides[0], qformat)
         # BGR to RGB
         outImage = outImage.rgbSwapped()
-        print("3")
         self.camera_display.setPixmap(QPixmap.fromImage(outImage))
         self.camera_display.setScaledContents(True)
 
