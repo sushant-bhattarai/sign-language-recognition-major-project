@@ -90,7 +90,7 @@ with open("test_labels", "rb") as f:
 test_images = np.reshape(test_images, (test_images.shape[0], image_x, image_y, 1))
 
 
-model = load_model('cnn_model_keras2.h5')
+model = load_model('cnn_model_keras.h5')
 pred_labels = []
 
 start_time = time.time()
