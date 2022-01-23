@@ -1,0 +1,11 @@
+h5py
+numpy
+scikit-learn
+sklearn
+tensorflow-gpu
+keras
+opencv-python==4.5.4.60
+pyttsx3
+PyQt5
+matplotlib
+pyplot
