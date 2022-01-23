@@ -4,6 +4,8 @@ test_images
 test_labels
 val_images
 val_labels
+test.py
+see_db_table.py
 gestures/
 
 # git config --global core.excludesfile ~/.gitignore_global
