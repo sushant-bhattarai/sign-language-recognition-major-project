@@ -5,7 +5,8 @@ from PyQt5.QtWidgets import QApplication, QDialog
 from PyQt5.uic import loadUi
 # from rec_web import *
 import numpy as np
-import cv2, pickle
+import cv2
+import pickle
 import numpy as np
 # import tensorflow as tf
 # from cnn_tf import cnn_model_fn

@@ -4,3 +4,6 @@ test_images
 test_labels
 val_images
 val_labels
+gestures/
+
+# git config --global core.excludesfile ~/.gitignore_global

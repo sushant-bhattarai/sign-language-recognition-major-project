@@ -33,8 +33,8 @@ def cnn_model():
 	model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding='same'))
 	model.add(Conv2D(32, (3,3), activation='relu'))
 	model.add(MaxPooling2D(pool_size=(3, 3), strides=(3, 3), padding='same'))
-	# model.add(Conv2D(64, (5,5), activation='relu'))
-	# model.add(MaxPooling2D(pool_size=(5, 5), strides=(5, 5), padding='same'))
+	model.add(Conv2D(64, (5,5), activation='relu'))
+	model.add(MaxPooling2D(pool_size=(5, 5), strides=(5, 5), padding='same'))
 	model.add(Flatten())
 	model.add(Dense(128, activation='relu'))
 	model.add(Dropout(0.2))
@@ -73,7 +73,7 @@ def train():
 	model.fit(train_images, train_labels, validation_data=(val_images, val_labels), epochs=20, batch_size=500, callbacks=callbacks_list)
 	scores = model.evaluate(val_images, val_labels, verbose=0)
 	print("CNN Error: %.2f%%" % (100-scores[1]*100))
-	model.save('cnn_model_keras2.h5')
+	model.save('cnn_model_keras.h5')
 
 train()
 K.clear_session();
