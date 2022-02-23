@@ -66,7 +66,7 @@ class MainWindow(QDialog):
         self.font = QFont()
         self.font.setFamily("Arial")
         self.font.setPointSize(35)
-        self.text.setFont(self.font)
+        self.myText.setFont(self.font)
         self.stop_button.setEnabled(False)
         self.start_button.clicked.connect(self.start_webcam)
         self.stop_button.clicked.connect(self.stop_webcam)
@@ -85,9 +85,10 @@ class MainWindow(QDialog):
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_frame)
-        self.timer.start(5)
+        self.timer.start(1)
 
     def update_frame(self):
+        text = " "
         ret, self.image = self.capture.read()
         self.image = cv2.flip(self.image, 1)
         self.image = cv2.resize(self.image, (640, 480))
@@ -121,10 +122,12 @@ class MainWindow(QDialog):
                                                   cv2.BORDER_CONSTANT, (0, 0, 0))
 
                 pred_probab, pred_class = keras_predict(model, save_img)
-
                 if pred_probab * 100 > 80:
+                    text = " "
                     text = get_pred_text_from_db(pred_class)
-                    self.text.setText(text)
+                    print(text)
+                    self.myText.setText(text)
+
 
         self.displayImage(self.image)
         self.displayThresh(thresh)

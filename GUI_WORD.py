@@ -52,7 +52,7 @@ def get_hand_hist():
 
 
 image_x, image_y = get_image_size()
-engine = pyttsx3.init("dummy")
+engine = pyttsx3.init()
 engine.setProperty('rate', 150)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 model = load_model('cnn_model_keras.h5')

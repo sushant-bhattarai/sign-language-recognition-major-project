@@ -16,14 +16,14 @@ def build_squares(img):
     crop = None
     for i in range(10):
         for j in range(5):
-            if np.any(imgCrop == None):
+            if np.any(imgCrop is None):
                 imgCrop = img[y:y + h, x:x + w]
             else:
                 imgCrop = np.hstack((imgCrop, img[y:y + h, x:x + w]))
             # print(imgCrop.shape)
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
             x += w + d
-        if np.any(crop == None):
+        if np.any(crop is None):
             crop = imgCrop
         else:
             crop = np.vstack((crop, imgCrop))
@@ -39,6 +39,11 @@ class MainWindow(QDialog):
         super(MainWindow, self).__init__()
         loadUi('OpenCv.ui', self)
         self.image = None
+        self.hsv = None
+        self.capture = None
+        self.timer = None
+        self.thresh = None
+        self.hist = None
         self.flagPressedC, self.flagPressedS = False, False
         self.imgCrop = None
         self.finalhistImg = None
@@ -52,7 +57,7 @@ class MainWindow(QDialog):
     def start_webcam1(self):
         # Capture video from external camera
         self.capture = cv2.VideoCapture(1)
-        if self.capture.read()[0] == False:
+        if not self.capture.read()[0]:
             # if external camera not found, use inbuilt camera
             self.capture = cv2.VideoCapture(0)
         x, y, w, h = 300, 100, 300, 300
@@ -61,16 +66,16 @@ class MainWindow(QDialog):
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_frame1)
-        self.timer.start(5)
+        self.timer.start(1)
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_frame2)
-        self.timer.start(5)
+        self.timer.start(1)
 
     def start_webcam2(self, ss):
         # Capture video from external camera
         self.capture = cv2.VideoCapture(1)
-        if self.capture.read()[0] == False:
+        if not self.capture.read()[0]:
             # if external camera not found, use inbuilt camera
             self.capture = cv2.VideoCapture(0)
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
@@ -79,36 +84,35 @@ class MainWindow(QDialog):
         self.update_frame3(self.flagPressedC, False)
 
     def update_frame1(self):
-        ret, self.image = self.capture.read()
+        self.image = self.capture.read()[1]
         self.image = cv2.flip(self.image, 1)
+        self.image = cv2.resize(self.image, (640, 480))
         self.hsv = cv2.cvtColor(self.image, cv2.COLOR_BGR2HSV)
         if not self.flagPressedS:
             self.imgCrop = build_squares(self.image)
-        self.displayImage(self.image,1)
+        self.displayImage(self.image, 1)
 
     def update_frame2(self):
         hsvCrop = cv2.cvtColor(self.imgCrop, cv2.COLOR_BGR2HSV)
         self.hist = cv2.calcHist([hsvCrop], [0, 1], None, [180, 256], [0, 180, 0, 256])
         cv2.normalize(self.hist, self.hist, 0, 255, cv2.NORM_MINMAX)
         dst = cv2.calcBackProject([self.hsv], [0, 1], self.hist, [0, 180, 0, 256], 1)
-        dst1 = dst.copy()
+        # dst1 = dst.copy()
         disc = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (10, 10))
         cv2.filter2D(dst, -1, disc, dst)
         blur = cv2.GaussianBlur(dst, (11, 11), 0)
         blur = cv2.medianBlur(blur, 15)
         ret, thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
         self.thresh = cv2.merge((thresh, thresh, thresh))
-        self.displayImage(thresh, 2)
+        self.displayImage(self.thresh, 2)
 
-
-    def update_frame3(self,FPC,FPS):
+    def update_frame3(self, FPC, FPS):
         if FPC:
             self.displayImage(self.thresh, 3)
         if FPS:
             with open("hist", "wb") as f:
                 pickle.dump(self.finalhistImg, f)
             self.stop_webcam()
-
 
     def displayImage(self, img, sel):
         qformat = QImage.Format_Indexed8
@@ -141,19 +145,6 @@ class MainWindow(QDialog):
             self.save_button_1.setEnabled(True)
             self.start_button_1.setEnabled(False)
 
-    def adjust_hist(self):
-        # Capture video from external camera
-        self.capture = cv2.VideoCapture(1)
-        if self.capture.read()[0] == False:
-            # if external camera not found, use inbuilt camera
-            self.capture = cv2.VideoCapture(0)
-        x, y, w, h = 300, 100, 300, 300
-        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update_frame2)
-        self.timer.start(5)
-
     def save_hist(self):
         self.flagPressedS = True
         self.update_frame3(False, self.flagPressedS)
@@ -161,6 +152,7 @@ class MainWindow(QDialog):
     def stop_webcam(self):
         self.capture.release()
         self.timer.stop()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

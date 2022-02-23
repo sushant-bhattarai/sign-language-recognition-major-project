@@ -10,14 +10,14 @@ def build_squares(img):
     crop = None
     for i in range(10):
         for j in range(5):
-            if np.any(imgCrop == None):
+            if np.any(imgCrop is None):
                 imgCrop = img[y:y + h, x:x + w]
             else:
                 imgCrop = np.hstack((imgCrop, img[y:y + h, x:x + w]))
             # print(imgCrop.shape)
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
             x += w + d
-        if np.any(crop == None):
+        if np.any(crop is None):
             crop = imgCrop
         else:
             crop = np.vstack((crop, imgCrop))
@@ -29,7 +29,7 @@ def build_squares(img):
 
 def get_hand_hist():
     cam = cv2.VideoCapture(1)
-    if cam.read()[0] == False:
+    if not cam.read()[0]:
         cam = cv2.VideoCapture(0)
     x, y, w, h = 300, 100, 300, 300
     flagPressedC, flagPressedS = False, False
@@ -39,7 +39,6 @@ def get_hand_hist():
         img = cv2.flip(img, 1)
         img = cv2.resize(img, (640, 480))
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
         keypress = cv2.waitKey(1)
         if keypress == ord('c'):
             hsvCrop = cv2.cvtColor(imgCrop, cv2.COLOR_BGR2HSV)

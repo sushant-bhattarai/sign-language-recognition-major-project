@@ -91,7 +91,7 @@ def get_hand_hist():
 def recognize():
 	global prediction
 	cam = cv2.VideoCapture(1)
-	if cam.read()[0] == False:
+	if not cam.read()[0]:
 		cam = cv2.VideoCapture(0)
 	hist = get_hand_hist()
 	x, y, w, h = 300, 100, 300, 300
@@ -144,5 +144,5 @@ def recognize():
 		if cv2.waitKey(1) == ord('q'):
 			break
 
-keras_predict(model, np.zeros((50, 50), dtype=np.uint8))		
+keras_predict(model, np.zeros((50, 50), dtype=np.uint8))
 recognize()

@@ -84,7 +84,7 @@
     <string>Recognize Gesture:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="text">
+  <widget class="QLabel" name="myText">
    <property name="geometry">
     <rect>
      <x>490</x>
@@ -171,7 +171,7 @@
   <zorder>threshhold_display</zorder>
   <zorder>camera_display</zorder>
   <zorder>color2_value</zorder>
-  <zorder>text</zorder>
+  <zorder>myText</zorder>
   <zorder>camera_here_text</zorder>
   <zorder>Threshold_here_text</zorder>
   <zorder>toggle_text</zorder>
