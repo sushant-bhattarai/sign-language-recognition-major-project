@@ -325,15 +325,16 @@ def text_mode(cam):
             text = ""
             word = ""
         blackboard = np.zeros((480, 640, 3), dtype=np.uint8)
-        cv2.putText(blackboard, "ASL WORDING", (180, 50), cv2.FONT_HERSHEY_TRIPLEX, 1.5, (255, 255, 255))
-        cv2.putText(blackboard, "PREDICTED TEXT: " + text, (30, 100), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 0))
-        cv2.putText(blackboard, "PRESS V TO TOGGLE VOICE", (30, 410), cv2.FONT_HERSHEY_TRIPLEX, 0.5, (0, 255, 255))
-        cv2.putText(blackboard, "PRESS Q TO QUIT", (30, 440), cv2.FONT_HERSHEY_TRIPLEX, 0.5, (0, 255, 255))
-        cv2.putText(blackboard, word, (30, 240), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 255))
+        cv2.putText(blackboard, "ASL WORDING", (180, 50), cv2.FONT_HERSHEY_TRIPLEX, 2.5, (255, 255, 255))
+        cv2.putText(blackboard, "PREDICTED TEXT: ", (30, 100), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 0))
+        cv2.putText(blackboard, text, (50, 270), cv2.FONT_HERSHEY_TRIPLEX, 7, (255, 255, 0), 10)
+        cv2.putText(blackboard, "PRESS V TO TOGGLE VOICE", (30, 427), cv2.FONT_HERSHEY_TRIPLEX, 0.5, (0, 255, 255))
+        cv2.putText(blackboard, "PRESS Q TO QUIT", (30, 457), cv2.FONT_HERSHEY_TRIPLEX, 0.5, (0, 255, 255))
+        cv2.putText(blackboard, "WORD: " + word, (30, 400), cv2.FONT_HERSHEY_PLAIN, 2, (255, 255, 255), 2)
         if is_voice_on:
-            cv2.putText(blackboard, "VOICE ON", (450, 440), cv2.FONT_HERSHEY_TRIPLEX, 1, (0, 255, 0))
+            cv2.putText(blackboard, "VOICE ON", (450, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (0, 255, 0))
         else:
-            cv2.putText(blackboard, "VOICE OFF", (450, 440), cv2.FONT_HERSHEY_TRIPLEX, 1, (0, 0, 255))
+            cv2.putText(blackboard, "VOICE OFF", (450, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (0, 0, 255))
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
         res = np.hstack((img, blackboard))
         cv2.imshow("Recognizing gesture", res)
