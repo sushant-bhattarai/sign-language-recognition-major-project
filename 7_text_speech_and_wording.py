@@ -1,7 +1,5 @@
 import cv2, pickle
 import numpy as np
-import tensorflow as tf
-# from cnn_tf import cnn_model_fn
 import os
 import sqlite3
 import pyttsx3
@@ -13,7 +11,7 @@ def get_num_of_classes():
     return len(os.listdir('gestures/'))
 
 
-engine = pyttsx3.init("dummy")
+engine = pyttsx3.init()
 engine.setProperty('rate', 150)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 model = load_model('cnn_model_keras.h5')
@@ -120,7 +118,7 @@ def text_mode(cam):
                 else:
                     count_same_frame = 0
 
-                if count_same_frame > 20:
+                if count_same_frame > 15:
                     if len(text) == 1:
                         Thread(target=say_text, args=(text,)).start()
                     word = word + text
@@ -186,5 +184,5 @@ def recognize():
             break
 
 
-keras_predict(model, np.zeros((50, 50), dtype=np.uint8))
+# keras_predict(model, np.zeros((50, 50), dtype=np.uint8))
 recognize()

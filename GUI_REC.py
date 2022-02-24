@@ -128,7 +128,6 @@ class MainWindow(QDialog):
                     print(text)
                     self.myText.setText(text)
 
-
         self.displayImage(self.image)
         self.displayThresh(thresh)
 

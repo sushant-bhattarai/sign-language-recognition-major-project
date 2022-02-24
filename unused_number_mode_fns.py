@@ -220,3 +220,19 @@ def cnn_model_fn(features, labels, mode):
     return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 
 
+def tf_process_image(img):
+	img = cv2.resize(img, (image_x, image_y))
+	img = np.array(img, dtype=np.float32)
+	np_array = np.array(img)
+	return np_array
+
+def tf_predict(classifier, image):
+	'''
+	need help with prediction using tensorflow
+	'''
+	global prediction
+	processed_array = tf_process_image(image)
+	pred_input_fn = tf.estimator.inputs.numpy_input_fn(x={"x":processed_array}, shuffle=False)
+	pred = classifier.predict(input_fn=pred_input_fn)
+	prediction = next(pred)
+	print(prediction)

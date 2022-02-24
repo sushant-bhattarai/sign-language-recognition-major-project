@@ -90,5 +90,5 @@ if not os.path.exists("gesture_db.db"):
         j = chr(ord('@') + (i + 1))
         store_in_db(i, j)
 
-    for i in range(26, 36):
-        store_in_db(i, (i - 26))
+    # for i in range(26, 36):
+    #     store_in_db(i, (i - 26))

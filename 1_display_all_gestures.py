@@ -22,9 +22,9 @@ for i in range(rows):
 	for j in range(begin_index, end_index):
 		img_path = "gestures/%s/%d.jpg" % (j, random.randint(1, 1200))
 		img = cv2.imread(img_path, 0)
-		if np.any(img == None):
+		if np.any(img is None):
 			img = np.zeros((image_y, image_x), dtype = np.uint8)
-		if np.any(col_img == None):
+		if np.any(col_img is None):
 			col_img = img
 		else:
 			col_img = np.hstack((col_img, img))
