@@ -13,6 +13,8 @@ from keras.layers.convolutional import MaxPooling2D
 from keras.utils import np_utils
 from keras.callbacks import ModelCheckpoint
 from keras import backend as K
+from matplotlib import pyplot as plt
+
 K.image_data_format()
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -33,11 +35,11 @@ image_x, image_y = get_image_size()
 def cnn_model():
 	num_of_classes = get_num_of_classes()
 	model = Sequential()
-	model.add(Conv2D(16, (2,2), input_shape=(image_x, image_y, 1), activation='relu'))
+	model.add(Conv2D(16, (2, 2), input_shape=(image_x, image_y, 1), activation='relu'))
 	model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding='same'))
-	model.add(Conv2D(32, (3,3), activation='relu'))
+	model.add(Conv2D(32, (3, 3), activation='relu'))
 	model.add(MaxPooling2D(pool_size=(3, 3), strides=(3, 3), padding='same'))
-	model.add(Conv2D(64, (5,5), activation='relu'))
+	model.add(Conv2D(64, (5, 5), activation='relu'))
 	model.add(MaxPooling2D(pool_size=(5, 5), strides=(5, 5), padding='same'))
 	model.add(Flatten())
 	model.add(Dense(128, activation='relu'))
@@ -75,9 +77,38 @@ def train():
 
 	model, callbacks_list = cnn_model()
 	model.summary()
-	model.fit(train_images, train_labels, validation_data=(val_images, val_labels), epochs=20, batch_size=500, callbacks=callbacks_list)
+	epochs = 3
+	hist = model.fit(train_images, train_labels, validation_data=(val_images, val_labels), epochs=epochs,
+						batch_size=100, callbacks=callbacks_list)
+
+	# plotting epoch vs loss graph
+	loss_train = hist.history['loss']
+	loss_val = hist.history['val_loss']
+	epoch = range(1, epochs+1)
+	plt.plot(epoch, loss_train, 'g', label='Training loss')
+	plt.plot(epoch, loss_val, 'b', label='Validation loss')
+	plt.title('Training and Validation loss')
+	plt.xlabel('Epochs')
+	plt.ylabel('Loss')
+	plt.legend(['Train', 'Validation'], loc='upper right')
+	plt.savefig('epoch_vs_loss_graph.png')
+	plt.show()
+
+	# plotting epoch vs accuracy graph
+	loss_train = hist.history['accuracy']
+	loss_val = hist.history['val_accuracy']
+	epoch = range(1, epochs+1)
+	plt.plot(epoch, loss_train, 'g', label='Training accuracy')
+	plt.plot(epoch, loss_val, 'b', label='Validation accuracy')
+	plt.title('Training and Validation accuracy')
+	plt.xlabel('Epochs')
+	plt.ylabel('Accuracy')
+	plt.legend(['Train', 'Validation'], loc='upper right')
+	plt.savefig('epoch_vs_accuracy_graph.png')
+	plt.show()
+
 	scores = model.evaluate(val_images, val_labels, verbose=0)
-	print("CNN Error: %.2f%%" % (100-scores[1]*100))
+	print("CNN Error: %.2f%%" % (100 - scores[1] * 100))
 	model.save('cnn_model_keras.h5')
 
 
