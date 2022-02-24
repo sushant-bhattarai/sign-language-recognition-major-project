@@ -103,7 +103,10 @@ def get_num_of_classes():
 
 
 engine = pyttsx3.init()
-engine.setProperty('rate', 100)
+engine.setProperty('rate', 120)
+voices = engine.getProperty('voices')
+# print(voices[0])
+engine.setProperty('voice', voices[1].id)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 model = load_model('cnn_model_keras.h5')
 
