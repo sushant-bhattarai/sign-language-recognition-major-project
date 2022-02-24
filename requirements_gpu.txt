@@ -3,7 +3,7 @@ numpy
 scikit-learn
 sklearn
 tensorflow-gpu
-keras
+keras==2.7
 opencv-python==4.5.4.60
 pyttsx3
 PyQt5

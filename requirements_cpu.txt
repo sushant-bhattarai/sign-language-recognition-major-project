@@ -2,8 +2,8 @@ h5py
 numpy
 scikit-learn
 sklearn
-tensorflow
-keras
+tensorflow==2.7
+keras==2.7
 opencv-python=4.5.4.60
 pyttsx3
 PyQt5
