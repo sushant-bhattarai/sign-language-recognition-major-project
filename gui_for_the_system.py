@@ -328,7 +328,7 @@ def text_mode(cam):
             text = ""
             word = ""
         blackboard = np.zeros((480, 640, 3), dtype=np.uint8)
-        cv2.putText(blackboard, "ASL WORDING", (180, 50), cv2.FONT_HERSHEY_TRIPLEX, 2.5, (255, 255, 255))
+        cv2.putText(blackboard, "ASL WORDING", (180, 50), cv2.FONT_HERSHEY_TRIPLEX, 1.5, (255, 255, 255))
         cv2.putText(blackboard, "PREDICTED TEXT: ", (30, 100), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 0))
         cv2.putText(blackboard, text, (50, 270), cv2.FONT_HERSHEY_TRIPLEX, 7, (255, 255, 0), 10)
         cv2.putText(blackboard, "PRESS V TO TOGGLE VOICE", (30, 427), cv2.FONT_HERSHEY_TRIPLEX, 0.5, (0, 255, 255))

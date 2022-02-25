@@ -25,31 +25,31 @@ images_labels = shuffle(shuffle(shuffle(shuffle(images_labels))))
 images, labels = zip(*images_labels)
 print("Length of images_labels", len(images_labels))
 
-train_images = images[:int(5 / 6 * len(images))]
+train_images = images[:int(4 / 5 * len(images))]
 print("Length of train_images", len(train_images))
 with open("train_images", "wb") as f:
     pickle.dump(train_images, f)
 del train_images
 
-train_labels = labels[:int(5 / 6 * len(labels))]
+train_labels = labels[:int(4 / 5 * len(labels))]
 print("Length of train_labels", len(train_labels))
 with open("train_labels", "wb") as f:
     pickle.dump(train_labels, f)
 del train_labels
 
-test_images = images[int(5 / 6 * len(images)):int(11 / 12 * len(images))]
+test_images = images[int(4 / 5 * len(images)):int(9 / 10 * len(images))]
 print("Length of test_images", len(test_images))
 with open("test_images", "wb") as f:
     pickle.dump(test_images, f)
 del test_images
 
-test_labels = labels[int(5 / 6 * len(labels)):int(11 / 12 * len(images))]
+test_labels = labels[int(4 / 5 * len(labels)):int(9 / 10 * len(images))]
 print("Length of test_labels", len(test_labels))
 with open("test_labels", "wb") as f:
     pickle.dump(test_labels, f)
 del test_labels
 
-val_images = images[int(11 / 12 * len(images)):]
+val_images = images[int(9 / 10 * len(images)):]
 print("Length of test_images", len(val_images))
 with open("val_images", "wb") as f:
     pickle.dump(val_images, f)
@@ -64,19 +64,10 @@ del val_labels
 
 # storing g_id and g_name of all gestures into gesture_db.db
 def store_in_db(ges_id, ges_name):
-    conn = sqlite3.connect("gesture_db.db")
+    connection = sqlite3.connect("gesture_db.db")
     cmd = "INSERT INTO gesture (g_id, g_name) VALUES (%s, \'%s\')" % (ges_id, ges_name)
-    # try:
-    conn.execute(cmd)
-    # except sqlite3.IntegrityError:
-    # 	choice = input("g_id already exists. Want to change the record? (y/n): ")
-    # 	if choice.lower() == 'y':
-    # 		cmd = "UPDATE gesture SET g_name = \'%s\' WHERE g_id = %s" % (g_name, g_id)
-    # 		conn.execute(cmd)
-    # 	else:
-    # 		print("Doing nothing...")
-    # 		return
-    conn.commit()
+    connection.execute(cmd)
+    connection.commit()
 
 
 if not os.path.exists("gesture_db.db"):
