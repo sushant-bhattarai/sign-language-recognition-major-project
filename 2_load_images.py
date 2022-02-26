@@ -50,12 +50,12 @@ with open("test_labels", "wb") as f:
 del test_labels
 
 val_images = images[int(9 / 10 * len(images)):]
-print("Length of test_images", len(val_images))
+print("Length of val_images", len(val_images))
 with open("val_images", "wb") as f:
     pickle.dump(val_images, f)
 del val_images
 
-val_labels = labels[int(11 / 12 * len(labels)):]
+val_labels = labels[int(9 / 10 * len(labels)):]
 print("Length of val_labels", len(val_labels))
 with open("val_labels", "wb") as f:
     pickle.dump(val_labels, f)
