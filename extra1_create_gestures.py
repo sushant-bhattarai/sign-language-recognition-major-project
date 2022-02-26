@@ -2,7 +2,11 @@ import cv2
 import numpy as np
 import pickle, os, sqlite3, random
 
-image_x, image_y = 75, 75
+def get_image_size():
+    img = cv2.imread('gestures/0/100.jpg', 0)
+    return img.shape
+
+image_x, image_y = get_image_size()
 
 
 def get_hand_hist():
