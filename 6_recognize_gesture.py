@@ -11,14 +11,14 @@ tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 
 def get_num_of_classes():
-    return len(os.listdir('gestures/'))
+    return len(os.listdir('gestures - our own - own/'))
 
 
 model = load_model('cnn_model_keras.h5')
 
 
 def get_image_size():
-    img = cv2.imread('gestures/0/100.jpg', 0)
+    img = cv2.imread('gestures - our own - own/0/100.jpg', 0)
     return img.shape
 
 

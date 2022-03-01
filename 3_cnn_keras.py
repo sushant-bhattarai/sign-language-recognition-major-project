@@ -80,9 +80,7 @@ def train():
     model, callbacks_list = cnn_model()
     model.summary()
     epochs = 20
-    hist = model.fit(train_images, train_labels, validation_data=(val_images, val_labels), epochs=epochs,
-                     batch_size=500,
-                     callbacks=callbacks_list)
+    hist = model.fit(train_images, train_labels, validation_data=(val_images, val_labels), epochs=epochs, batch_size=500, callbacks=callbacks_list)
 
     # plotting epoch vs loss graph
     loss_train = hist.history['loss']

@@ -56,7 +56,7 @@ def store_images(g_id):
         cam = cv2.VideoCapture(0)
     x, y, w, h = 300, 100, 300, 300
 
-    create_folder("gestures/" + str(g_id))
+    create_folder("gestures" + str(g_id))
     pic_no = 0
     flag_start_capturing = False
     frames = 0

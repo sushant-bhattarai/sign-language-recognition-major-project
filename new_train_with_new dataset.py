@@ -19,7 +19,7 @@ def get_hand_hist():
 hist = get_hand_hist()
 
 images_labels = []
-images = glob("gestures/14/*.jpg")
+images = glob("gestures/*/*.jpg")
 images.sort()
 
 
