@@ -278,8 +278,8 @@ def get_img_contour_thresh(img):
 def say_text(text):
     if not is_voice_on:
         return
-    # while engine._inLoop:
-    #     pass
+    while engine._inLoop:
+	    pass
     engine.say(text)
     engine.runAndWait()
 
@@ -321,7 +321,7 @@ def text_mode(cam):
                 text = ""
                 word = ""
         else:
-            if word != '':
+            if word != "":
                 # print('yolo1')
                 # say_text(text)
                 Thread(target=say_text, args=(word,)).start()

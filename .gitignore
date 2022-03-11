@@ -7,7 +7,8 @@ val_labels
 test.py
 see_db_table.py
 gestures/
-gestures - our own/
+gestures - evilport/
 gestures - kaggle/
+gestures - our own/
 
 # git config --global core.excludesfile ~/.gitignore_global
