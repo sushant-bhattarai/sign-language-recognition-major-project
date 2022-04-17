@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>718</width>
-    <height>533</height>
+    <width>945</width>
+    <height>609</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QPushButton" name="hand_hist_button">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>200</y>
-      <width>141</width>
-      <height>31</height>
+      <x>30</x>
+      <y>220</y>
+      <width>181</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -38,7 +38,7 @@
      <rect>
       <x>50</x>
       <y>70</y>
-      <width>621</width>
+      <width>811</width>
       <height>91</height>
      </rect>
     </property>
@@ -59,10 +59,10 @@
    <widget class="QPushButton" name="recognize_gesture_button">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>240</y>
-      <width>141</width>
-      <height>31</height>
+      <x>30</x>
+      <y>280</y>
+      <width>181</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -83,7 +83,7 @@
      <rect>
       <x>50</x>
       <y>20</y>
-      <width>621</width>
+      <width>821</width>
       <height>61</height>
      </rect>
     </property>
@@ -109,7 +109,7 @@
      <rect>
       <x>130</x>
       <y>110</y>
-      <width>491</width>
+      <width>671</width>
       <height>41</height>
      </rect>
     </property>
@@ -150,10 +150,10 @@
    <widget class="QPushButton" name="wording_button">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>280</y>
-      <width>161</width>
-      <height>31</height>
+      <x>30</x>
+      <y>340</y>
+      <width>181</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -171,8 +171,8 @@
      <rect>
       <x>330</x>
       <y>150</y>
-      <width>311</width>
-      <height>171</height>
+      <width>461</width>
+      <height>251</height>
      </rect>
     </property>
     <property name="text">
@@ -226,8 +226,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>718</width>
-     <height>21</height>
+     <width>945</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
